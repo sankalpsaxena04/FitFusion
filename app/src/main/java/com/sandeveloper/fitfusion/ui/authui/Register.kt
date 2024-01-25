@@ -51,10 +51,11 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.sandeveloper.fitfusion.R
 
 @Composable
-fun register(){
+fun register(navController: NavController){
     val scrollState = rememberScrollState()
 
     var filledEmailId by remember{
@@ -80,7 +81,7 @@ fun register(){
         .fillMaxSize()
         .verticalScroll(scrollState)
     ){
-        IconButton(onClick = { /*TODO*/ },modifier = Modifier
+        IconButton(onClick = { navController.popBackStack()},modifier = Modifier
             .wrapContentSize(Alignment.TopStart)
             .offset(10.dp, 10.dp)) {
             Icon(imageVector = Icons.Outlined.ArrowBackIosNew, contentDescription ="back",

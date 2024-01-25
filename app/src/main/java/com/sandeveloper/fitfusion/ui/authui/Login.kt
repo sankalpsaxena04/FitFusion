@@ -46,11 +46,12 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.sandeveloper.fitfusion.Functionality.Screen
 import com.sandeveloper.fitfusion.R
 
-@Preview(showBackground = true)
 @Composable
-fun login(){
+fun login(navController: NavController){
     val scrollState = rememberScrollState()
     var filledEmailId by remember{
         mutableStateOf("")
@@ -62,7 +63,7 @@ fun login(){
         .fillMaxSize()
         .verticalScroll(scrollState)
     ){
-        IconButton(onClick = { /*TODO*/ },modifier = Modifier
+        IconButton(onClick = { navController.popBackStack() },modifier = Modifier
             .wrapContentSize(Alignment.TopStart)
             .offset(10.dp, 10.dp)) {
             Icon(imageVector = Icons.Outlined.ArrowBackIosNew, contentDescription ="back",
@@ -124,7 +125,9 @@ fun login(){
                 }
             })
 
-        FilledTonalButton(onClick = {  },
+        FilledTonalButton(onClick = {
+                                    navController.navigate(Screen.Main.route)
+        },
             modifier = Modifier
                 .padding(45.dp, 40.dp, 45.dp, 25.dp)
                 .clip(RoundedCornerShape(10.dp))
